@@ -15,6 +15,7 @@
   display: inline-block;
   top: 50%;
   left: 50%;
+  cursor: pointer;
   transform: scale(0);
   margin-left: -50%;
   margin-top: -15px;
