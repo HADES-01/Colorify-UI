@@ -1,0 +1,63 @@
+.ColorBox {
+  width: 20%;
+  height: 25%;
+  margin: 0 auto;
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: -4px;
+  position: relative;
+}
+
+.copy-button {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: scale(0);
+  margin-left: -50%;
+  margin-top: -15px;
+  border: none;
+  text-align: center;
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  line-height: 30px;
+  color: white;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.ColorBox:hover .copy-button {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.box-content {
+  text-align: left;
+  position: absolute;
+  width: 100%;
+  padding: 10px;
+  font-size: 10px;
+  left: 0px;
+  bottom: 0px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.see-more {
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  border: none;
+  right: 0;
+  bottom: 0;
+  letter-spacing: 1px;
+  color: white;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  text-transform: uppercase;
+}
