@@ -20,6 +20,7 @@ function App() {
           path="/palette/:paletteId/:colorId"
           render={(routeProps) => (
             <SingleColorPalette
+              {...routeProps}
               color={routeProps.match.params.colorId}
               palette={generatePalette(
                 findPalette(routeProps.match.params.paletteId)

@@ -31,7 +31,6 @@ class ColorBox extends Component {
         className={`ColorBox ${copied && "show"}`}
         style={{
           background: background,
-          height: `${showLink ? "25%" : "50%"}`,
         }}
       >
         <div

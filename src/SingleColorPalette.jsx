@@ -42,7 +42,20 @@ class SingleColorPalette extends Component {
     return (
       <div className="SingleColorPalette">
         <Navbar showLevel={false} handleChange={this.changeFormat} />
-        <div className="Palette-colors">{colorBoxes}</div>
+        <div className="Palette-colors">
+          {colorBoxes}
+          <div
+            className="ColorBox"
+            style={{ background: "black", height: "50%" }}
+          >
+            <div className="copy-container" onClick={this.props.history.goBack}>
+              <button className="copy-button">
+                <i class="fas fa-arrow-circle-left fa-4x"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     );

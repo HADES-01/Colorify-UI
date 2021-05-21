@@ -8,6 +8,11 @@
   position: relative;
   transition: 0.2s transform ease-in-out;
 }
+
+.SingleColorPalette .ColorBox {
+  height: 50%;
+}
+
 .ColorBox.show {
   pointer-events: none;
   transform: none;
@@ -40,8 +45,16 @@
   transition: 0.3s ease-in-out;
 }
 
+.SingleColorPalette .copy-button {
+  opacity: 1;
+  height: 100%;
+}
+
+.SingleColorPalette .ColorBox:hover .copy-button {
+  opacity: 0.6;
+}
+
 .ColorBox:hover .copy-button {
-  transform: scale(1);
   height: 100%;
   opacity: 1;
 }
