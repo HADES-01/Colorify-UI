@@ -21,7 +21,10 @@ class ColorBox extends Component {
     let { copied } = this.state;
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
-        <div className="ColorBox" style={{ background: background }}>
+        <div
+          className={`ColorBox ${copied && "show"}`}
+          style={{ background: background }}
+        >
           <div
             style={{ background: background }}
             className={`copy-overlay ${copied && "show"}`}
