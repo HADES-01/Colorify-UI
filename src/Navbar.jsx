@@ -24,7 +24,7 @@ class Navbar extends Component {
     this.setState({ open: false });
   }
   render() {
-    let { level, changeLevel } = this.props;
+    let { level, changeLevel, showLevel } = this.props;
     let { format, open } = this.state;
     return (
       <header className="Navbar">
@@ -33,18 +33,21 @@ class Navbar extends Component {
             Colorify UI
           </Link>
         </div>
-        <div className="slider-container">
-          <span>Level: {level}</span>
-          <div className="slider">
-            <Slider
-              defaultValue={level}
-              min={100}
-              max={900}
-              step={100}
-              onAfterChange={changeLevel}
-            />
+        {showLevel && (
+          <div className="slider-container">
+            <span>Level: {level}</span>
+            <div className="slider">
+              <Slider
+                defaultValue={level}
+                min={100}
+                max={900}
+                step={100}
+                onAfterChange={changeLevel}
+              />
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="select-container">
           <Select value={format} onChange={this.handleChange}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>

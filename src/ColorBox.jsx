@@ -29,7 +29,10 @@ class ColorBox extends Component {
     return (
       <div
         className={`ColorBox ${copied && "show"}`}
-        style={{ background: background }}
+        style={{
+          background: background,
+          height: `${showLink ? "25%" : "50%"}`,
+        }}
       >
         <div
           style={{ background: background }}
