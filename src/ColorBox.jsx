@@ -32,7 +32,10 @@ class ColorBox extends Component {
           <div className={`copy-msg ${copied && "show"}`}>
             <h1>copied!</h1>
             <br />
-            <span>{background}</span>
+            <span>
+              <span style={{ textTransform: "uppercase" }}>{name}</span> :{" "}
+              {background}
+            </span>
           </div>
           <div className="copy-container">
             <div className="box-content">

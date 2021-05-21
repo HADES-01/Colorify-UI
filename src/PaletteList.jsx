@@ -5,13 +5,14 @@ import MiniPalette from "./MiniPalette";
 const styles = {
   root: {
     backgroundColor: "blue",
-    height: "100%",
+    height: "100vh",
+    overflow: "auto",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
   },
   container: {
-    width: "50%",
+    width: "60%",
     display: "flex",
     alignItems: "flex-start",
     flexDirection: "column",
