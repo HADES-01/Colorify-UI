@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Link } from "react-router-dom";
 import "./ColorBox.css";
 
 class ColorBox extends Component {
@@ -28,6 +29,7 @@ class ColorBox extends Component {
           <div
             style={{ background: background }}
             className={`copy-overlay ${copied && "show"}`}
+            onClick={(e) => e.stopPropagation()}
           />
           <div className={`copy-msg ${copied && "show"}`}>
             <h1>copied!</h1>
@@ -43,7 +45,15 @@ class ColorBox extends Component {
             </div>
             <button className="copy-button">More...</button>
           </div>
-          <button className="see-more">Copy</button>
+          <Link
+            className="see-more"
+            to="/"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            Copy
+          </Link>
         </div>
       </CopyToClipboard>
     );

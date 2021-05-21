@@ -30,6 +30,11 @@ function App() {
             />
           )}
         />
+        <Route
+          exact
+          path="/palette/:paletteId/:colordId"
+          render={() => <h1>Come</h1>}
+        />
       </Switch>
     </div>
   );
