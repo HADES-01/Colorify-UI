@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { withRouter } from "react-router-dom";
+import chroma from "chroma-js";
 import "./ColorBox.css";
 
 class ColorBox extends Component {
@@ -26,6 +27,8 @@ class ColorBox extends Component {
   render() {
     let { name, background, showLink } = this.props;
     let { copied } = this.state;
+    const luminance = chroma(background).luminance() < 0.28;
+    console.log(chroma(background).luminance());
     return (
       <div
         className={`ColorBox ${copied && "show"}`}
@@ -38,7 +41,11 @@ class ColorBox extends Component {
           className={`copy-overlay ${copied && "show"}`}
           onClick={(e) => e.stopPropagation()}
         />
-        <div className={`copy-msg ${copied && "show"}`}>
+        <div
+          className={`copy-msg ${copied && "show"} ${
+            !luminance && "dark-text"
+          }`}
+        >
           <h1>copied!</h1>
           <br />
           <span>
@@ -48,12 +55,18 @@ class ColorBox extends Component {
         </div>
         <div className="copy-container" onClick={this.handleClick}>
           <div className="box-content">
-            <span>{name}</span>
+            <span className={luminance ? "light-text" : ""}>{name}</span>
           </div>
-          {showLink && <button className="copy-button">More...</button>}
+          {showLink && (
+            <button className="copy-button">
+              <i className="fas fa-angle-double-right fa-2x"></i>
+            </button>
+          )}
         </div>
         <CopyToClipboard text={background} onCopy={this.changeCopyState}>
-          <span className="see-more">Copy</span>
+          <span className="see-more">
+            <i className="far fa-copy fa-2x"></i>
+          </span>
         </CopyToClipboard>
       </div>
     );

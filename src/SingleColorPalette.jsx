@@ -50,7 +50,7 @@ class SingleColorPalette extends Component {
           >
             <div className="copy-container" onClick={this.props.history.goBack}>
               <button className="copy-button">
-                <i class="fas fa-arrow-circle-left fa-4x"></i>
+                <i className="fas fa-arrow-circle-left fa-4x"></i>
               </button>
             </div>
           </div>
