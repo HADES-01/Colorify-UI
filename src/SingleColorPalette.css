@@ -1,0 +1,9 @@
+.SingleColorPalette {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ColorBox {
+  width: 20%;
+  height: 50%;
+}

@@ -70,11 +70,13 @@
   width: 60px;
   height: 30px;
   text-align: center;
+  font-weight: 600;
   line-height: 30px;
   text-transform: uppercase;
+  transition: 0.3s background ease-in;
 }
 .see-more:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .copy-overlay {
