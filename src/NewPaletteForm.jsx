@@ -19,7 +19,7 @@ export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState("#ff0000");
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState([{ color: "#ff0000", name: "Red" }]);
   const [colorName, setColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
 
@@ -37,6 +37,11 @@ export default function NewPaletteForm(props) {
 
   const handlePaletteName = (e) => {
     setNewPaletteName(e.target.value);
+  };
+
+  const removeColor = (newName) => {
+    let newColors = colors.filter(({ name }) => name !== newName);
+    setColors(newColors);
   };
 
   const handleSubmit = () => {
@@ -166,7 +171,11 @@ export default function NewPaletteForm(props) {
       >
         <div className={classes.drawerHeader} />
         {colors.map((col) => (
-          <DraggableColorBox color={col.color} key={col.name} />
+          <DraggableColorBox
+            color={col}
+            key={col.name}
+            handleClick={removeColor}
+          />
         ))}
       </main>
     </div>

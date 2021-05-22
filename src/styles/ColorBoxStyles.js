@@ -6,7 +6,7 @@ const styles = {
     margin: "0 auto",
     display: "inline-block",
     cursor: "pointer",
-    marginBottom: "-6px",
+    marginBottom: "-4px",
     position: "relative",
     transition: "0.2s transform ease-in-out",
     "&:hover": {
