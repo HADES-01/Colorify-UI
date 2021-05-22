@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
-import useStyles from "./styles/NewPaletteFormStyles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -11,14 +10,15 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import useStyles from "./styles/NewPaletteFormStyles";
 import { ChromePicker } from "react-color";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggableColorBox from "./DraggableColorBox";
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
-  const [color, setColor] = useState("red");
+  const [currentColor, setCurrentColor] = useState("#ff0000");
   const [colors, setColors] = useState([]);
   const [colorName, setColorName] = useState("");
 
@@ -31,12 +31,24 @@ export default function NewPaletteForm() {
   };
 
   const handleColorChange = (color) => {
-    setColor(color.hex);
+    setCurrentColor(color.hex);
+  };
+
+  const handleSubmit = () => {
+    let newName = "New Test Palette";
+
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, "-"),
+      colors: colors,
+    };
+    props.savePalette(newPalette);
+    props.history.push("/");
   };
 
   const addColor = () => {
     const newColor = {
-      value: color,
+      color: currentColor,
       name: colorName,
     };
     setColors([...colors, newColor]);
@@ -47,7 +59,7 @@ export default function NewPaletteForm() {
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
     );
     ValidatorForm.addValidationRule("isColorUnique", (value) =>
-      colors.every(({ value }) => value !== color)
+      colors.every(({ color }) => color !== currentColor)
     );
   });
   const handleChange = (e) => {
@@ -58,6 +70,7 @@ export default function NewPaletteForm() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color="default"
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -76,6 +89,9 @@ export default function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -102,7 +118,7 @@ export default function NewPaletteForm() {
             Random
           </Button>
         </div>
-        <ChromePicker color={color} onChange={handleColorChange} />
+        <ChromePicker color={currentColor} onChange={handleColorChange} />
         <ValidatorForm onSubmit={addColor}>
           <TextValidator
             value={colorName}
@@ -116,7 +132,7 @@ export default function NewPaletteForm() {
           />
           <Button
             variant="contained"
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: currentColor }}
             type="submit"
           >
             Add Color
@@ -131,7 +147,7 @@ export default function NewPaletteForm() {
       >
         <div className={classes.drawerHeader} />
         {colors.map((col) => (
-          <DraggableColorBox color={col.value} />
+          <DraggableColorBox color={col.color} key={col.name} />
         ))}
       </main>
     </div>
