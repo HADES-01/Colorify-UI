@@ -3,16 +3,10 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import { withStyles } from "@material-ui/styles";
-import "./SingleColorPalette.css";
+import PaletteStyles from "./styles/PaletteStyles";
 
 const styles = {
-  main: {
-    overflow: "hidden",
-    height: "100vh",
-  },
-  colors: {
-    height: "85%",
-  },
+  ...PaletteStyles,
   box: {
     width: "20%",
     height: (props) => (props.showFullPalette ? "25%" : "50%"),

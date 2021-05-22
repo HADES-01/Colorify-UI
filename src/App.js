@@ -1,4 +1,3 @@
-import "./App.css";
 import Palette from "./Palette.jsx";
 import seedColors from "./seedColors";
 import { Switch, Route } from "react-router-dom";
