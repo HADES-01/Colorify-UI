@@ -13,7 +13,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import useStyles from "./styles/NewPaletteFormStyles";
 import { ChromePicker } from "react-color";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorBoxList from "./DraggableColorBoxList";
+import { arrayMove } from "react-sortable-hoc";
 
 export default function NewPaletteForm(props) {
   const classes = useStyles();
@@ -60,6 +61,13 @@ export default function NewPaletteForm(props) {
       name: colorName,
     };
     setColors([...colors, newColor]);
+    setColorName("");
+    setCurrentColor("#ffffff");
+  };
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    let newColors = arrayMove(colors, oldIndex, newIndex);
+    setColors(newColors);
   };
 
   useEffect(() => {
@@ -170,13 +178,12 @@ export default function NewPaletteForm(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map((col) => (
-          <DraggableColorBox
-            color={col}
-            key={col.name}
-            handleClick={removeColor}
-          />
-        ))}
+        <DraggableColorBoxList
+          colors={colors}
+          removeColor={removeColor}
+          axis="xy"
+          onSortEnd={onSortEnd}
+        />
       </main>
     </div>
   );
