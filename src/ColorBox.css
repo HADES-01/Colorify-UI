@@ -93,10 +93,11 @@
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  transition: 0.3s background ease-in;
+  transition: 0.3s all ease-in;
 }
 .see-more:hover {
   background: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 .copy-overlay {

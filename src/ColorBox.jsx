@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { withRouter } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
 import chroma from "chroma-js";
 import "./ColorBox.css";
+
+const styles = {
+  copyText: {
+    color: (props) =>
+      chroma(props.background).luminance() <= 0.28 ? "white" : "black",
+  },
+};
 
 class ColorBox extends Component {
   constructor(props) {
@@ -25,10 +33,8 @@ class ColorBox extends Component {
   }
 
   render() {
-    let { name, background, showLink } = this.props;
+    let { name, background, showLink, classes } = this.props;
     let { copied } = this.state;
-    const luminance = chroma(background).luminance() < 0.28;
-    console.log(chroma(background).luminance());
     return (
       <div
         className={`ColorBox ${copied && "show"}`}
@@ -41,11 +47,7 @@ class ColorBox extends Component {
           className={`copy-overlay ${copied && "show"}`}
           onClick={(e) => e.stopPropagation()}
         />
-        <div
-          className={`copy-msg ${copied && "show"} ${
-            !luminance && "dark-text"
-          }`}
-        >
+        <div className={`copy-msg ${copied && "show"} ${classes.copyText}`}>
           <h1>copied!</h1>
           <br />
           <span>
@@ -55,7 +57,7 @@ class ColorBox extends Component {
         </div>
         <div className="copy-container" onClick={this.handleClick}>
           <div className="box-content">
-            <span className={luminance ? "light-text" : ""}>{name}</span>
+            <span className={classes.copyText}>{name}</span>
           </div>
           {showLink && (
             <button className="copy-button">
@@ -64,7 +66,7 @@ class ColorBox extends Component {
           )}
         </div>
         <CopyToClipboard text={background} onCopy={this.changeCopyState}>
-          <span className="see-more">
+          <span className={`see-more ${classes.copyText}`}>
             <i className="far fa-copy fa-2x"></i>
           </span>
         </CopyToClipboard>
@@ -73,4 +75,4 @@ class ColorBox extends Component {
   }
 }
 
-export default withRouter(ColorBox);
+export default withRouter(withStyles(styles)(ColorBox));
