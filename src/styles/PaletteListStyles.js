@@ -19,6 +19,15 @@ const styles = {
     width: "100%",
     color: "white",
     justifyContent: "space-between",
+    alignItems: "center",
+    "& a": {
+      textDecoration: "none",
+      color: "white",
+      height: "100%",
+      "&:hover": {
+        cursor: "pointer",
+      },
+    },
   },
   palettes: {
     boxSizing: "border-box",
