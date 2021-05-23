@@ -1,5 +1,5 @@
 const styles = {
-  root: {
+  main: {
     border: "1px solid black",
     backgroundColor: "White",
     borderRadius: "5px",

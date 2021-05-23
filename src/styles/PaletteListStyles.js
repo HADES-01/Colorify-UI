@@ -8,7 +8,7 @@ const styles = {
     justifyContent: "center",
   },
   container: {
-    width: "60%",
+    width: "50%",
     display: "flex",
     alignItems: "flex-start",
     flexDirection: "column",
