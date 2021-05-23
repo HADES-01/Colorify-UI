@@ -10,45 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import PaletteMetaForm from "./PaletteMetaForm";
-const drawerWidth = 350;
-const styles = (theme) => ({
-  root: {
-    display: "flex",
-  },
-  appBar: {
-    // height: "64px",
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: "none",
-  },
-  navBtns: {
-    marginRight: "1rem",
-  },
-  button: {
-    margin: "0 0.55rem",
-  },
-  link: {
-    textDecoration: "none",
-  },
-});
+import styles from "./styles/PaletteFormNavStyles";
 
 class PaletteFormNav extends Component {
   constructor(props) {
@@ -90,8 +52,8 @@ class PaletteFormNav extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
-              Persistent drawer
+            <Typography variant="h5" noWrap>
+              Untitled_1
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
