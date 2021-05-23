@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import sizes from "./sizes";
 const styles = {
   main: {
     width: "20%",
@@ -19,6 +20,18 @@ const styles = {
         zIndex: "2",
         opacity: (props) => (props.showFullPalette ? "1" : "0.6"),
       },
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: (props) => (props.showFullPalette ? "20%" : "33%"),
+    },
+    [sizes.down("sm")]: {
+      width: "50%",
+      height: (props) => (props.showFullPalette ? "10%" : "20%"),
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: (props) => (props.showFullPalette ? "5%" : "10%"),
     },
   },
   showMain: {
@@ -71,8 +84,8 @@ const styles = {
     zIndex: "2",
     letterSpacing: "1px",
     color: "white",
-    width: "50px",
-    height: "50px",
+    width: "30px",
+    height: "30px",
     textAlign: "center",
     fontWeight: "600",
     lineHeight: "30px",

@@ -1,4 +1,17 @@
 const styles = {
+  "@global": {
+    ".fade-exit-active": {
+      opacity: 0,
+      transition: "opacity 500ms ease-out",
+    },
+    ".fade-enter": {
+      opacity: 0,
+      transition: "opacity 0.3s ease-in",
+    },
+    "fade-enter-active": {
+      opacity: 1,
+    },
+  },
   main: {
     border: "1px solid black",
     backgroundColor: "White",
@@ -6,8 +19,9 @@ const styles = {
     padding: "0.5rem",
     position: "relative",
     overflow: "hidden",
-    "&:hover": {
-      cursor: "pointer",
+    cursor: "pointer",
+    "&:hover svg": {
+      opacity: 1,
     },
   },
   colors: {
@@ -38,6 +52,18 @@ const styles = {
     margin: "0 auto",
     position: "relative",
     marginBottom: "-4px",
+  },
+  deleteIcon: {
+    backgroundColor: "red",
+    position: "absolute",
+    top: 0,
+    right: 0,
+    zIndex: 2,
+    color: "white",
+    padding: "4px",
+    opacity: 0,
+    borderRadius: "5px",
+    transition: "0.3s all ease-in-out",
   },
 };
 export default styles;

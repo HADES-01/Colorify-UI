@@ -12,11 +12,16 @@ function App() {
   const [palettes, setPalettes] = useState(localPalettes || seedColors);
   syncLocalStorage();
 
-  const findPalette = (id) => {
+  function findPalette(id) {
     return palettes.find(function (palette) {
       return palette.id === id;
     });
-  };
+  }
+
+  function removePalette(paletteId) {
+    const newPalettes = palettes.filter(({ id }) => id !== paletteId);
+    setPalettes(newPalettes);
+  }
 
   function savePalette(newPalette) {
     setPalettes([...palettes, newPalette]);
@@ -47,7 +52,11 @@ function App() {
           exact
           path="/"
           render={(routeProps) => (
-            <PaletteList {...routeProps} palettes={palettes} />
+            <PaletteList
+              {...routeProps}
+              palettes={palettes}
+              removePalette={removePalette}
+            />
           )}
         />
         <Route

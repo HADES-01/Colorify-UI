@@ -58,13 +58,13 @@ class ColorBox extends Component {
           {showFullPalette && (
             <button className={`${classes.seeMore} some`}>
               {"    "}
-              <i className="fas fa-angle-double-right fa-2x"></i>
+              <i className="fas fa-angle-double-right"></i>
             </button>
           )}
         </div>
         <CopyToClipboard text={background} onCopy={this.changeCopyState}>
           <span className={`${classes.copyButton} ${classes.copyText}`}>
-            <i className="far fa-copy fa-2x"></i>
+            <i className="far fa-copy"></i>
           </span>
         </CopyToClipboard>
       </div>
