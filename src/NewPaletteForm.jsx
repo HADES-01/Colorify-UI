@@ -20,10 +20,11 @@ export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState("#ff0000");
-  const [colors, setColors] = useState([{ color: "#ff0000", name: "Red" }]);
+  const [colors, setColors] = useState(props.palettes[0].colors);
   const [colorName, setColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
 
+  const maxColors = 20;
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -65,6 +66,17 @@ export default function NewPaletteForm(props) {
     setCurrentColor("#ffffff");
   };
 
+  const clearPalette = () => {
+    setColors([]);
+  };
+
+  const addRandomColor = () => {
+    let allColors = props.palettes.map(({ colors }) => colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    let randColor = allColors[rand];
+    setColors([...colors, randColor]);
+  };
+
   const onSortEnd = ({ oldIndex, newIndex }) => {
     let newColors = arrayMove(colors, oldIndex, newIndex);
     setColors(newColors);
@@ -87,7 +99,7 @@ export default function NewPaletteForm(props) {
   const handleChange = (e) => {
     setColorName(e.target.value);
   };
-
+  const paletteFull = maxColors <= colors.length;
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -142,10 +154,15 @@ export default function NewPaletteForm(props) {
         <Divider />
         <Typography variant="h4">Design Your Palette</Typography>
         <div>
-          <Button variant="contained" color="secondary">
-            Create
+          <Button variant="contained" color="secondary" onClick={clearPalette}>
+            Clear Palette
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={addRandomColor}
+            disabled={paletteFull}
+          >
             Random
           </Button>
         </div>
@@ -164,10 +181,11 @@ export default function NewPaletteForm(props) {
           />
           <Button
             variant="contained"
-            style={{ backgroundColor: currentColor }}
+            style={{ backgroundColor: paletteFull ? "grey" : currentColor }}
             type="submit"
+            disabled={paletteFull}
           >
-            Add Color
+            {paletteFull ? "Palette Is Full" : "Add Color"}
           </Button>
         </ValidatorForm>
       </Drawer>

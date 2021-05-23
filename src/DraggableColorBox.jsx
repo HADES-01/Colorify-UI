@@ -12,7 +12,7 @@ const styles = {
     cursor: "pointer",
     marginBottom: "-6px",
     position: "relative",
-    transition: "0.2s transform ease-in-out",
+    zIndex: "1",
     "&:hover svg": {
       transform: "scale(1.3)",
       color: "white",
@@ -27,7 +27,7 @@ const styles = {
     color: "rgba(0,0,0,0.6)",
     letterSpacing: "1px",
     textTransform: "uppercase",
-    fontSize: "1.1rem",
+    fontSize: "0.9rem",
     display: "flex",
     justifyContent: "space-between",
   },
