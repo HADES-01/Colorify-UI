@@ -1,4 +1,5 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,38 +9,45 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import PaletteMetaForm from "./PaletteMetaForm";
+const drawerWidth = 350;
+const styles = (theme) => ({
+  root: {
+    display: "flex",
+  },
+  appBar: {
+    // height: "64px",
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    flexDirection: "row",
+    // justifyContent: "space-between",
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  hide: {
+    display: "none",
+  },
+  navBtns: {
+    display: "flex",
+    alignItems: "center",
+  },
+});
 
-class PaletteFormNav extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      newPaletteName: "",
-    };
-    this.handlePaletteName = this.handlePaletteName.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handlePaletteName(e) {
-    this.setState({ newPaletteName: e.target.value });
-  }
-
-  handleSubmit() {
-    this.props.handleSubmit(this.state.newPaletteName);
-  }
-
-  componentDidMount() {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
-      this.props.palettes.every(
-        ({ paletteName }) =>
-          paletteName.toLowerCase() !== this.state.newPaletteName.toLowerCase()
-      )
-    );
-  }
+class PaletteFormNav extends Component {
   render() {
-    const { newPaletteName } = this.state;
-    const { classes, open, handleDrawerOpen } = this.props;
+    const { classes, open, handleDrawerOpen, palettes, handleSubmit } =
+      this.props;
     return (
       <div>
         <CssBaseline />
@@ -63,33 +71,19 @@ class PaletteFormNav extends PureComponent {
             <Typography variant="h6" noWrap>
               Persistent drawer
             </Typography>
-            <ValidatorForm
-              onSubmit={this.handleSubmit}
-              style={{ display: "flex", height: "64px", alignItems: "center" }}
-            >
-              <TextValidator
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={["This is required", "Name is Already in Use"]}
-                value={newPaletteName}
-                label="Palette Name"
-                onChange={this.handlePaletteName}
-              />
-              <div>
-                <Button type="submit" variant="contained" color="primary">
-                  Save Palette
-                </Button>
-              </div>
-            </ValidatorForm>
+          </Toolbar>
+          <div className={classes.navBtns}>
+            <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
             <Link to="/">
               <Button variant="contained" color="primary">
                 Go Back
               </Button>
             </Link>
-          </Toolbar>
+          </div>
         </AppBar>
       </div>
     );
   }
 }
 
-export default PaletteFormNav;
+export default withStyles(styles)(PaletteFormNav);

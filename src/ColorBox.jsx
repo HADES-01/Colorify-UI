@@ -57,9 +57,8 @@ class ColorBox extends Component {
           </div>
           {showFullPalette && (
             <button className={`${classes.seeMore} some`}>
-              See More
               {"    "}
-              <i className="fas fa-angle-double-right"></i>
+              <i className="fas fa-angle-double-right fa-2x"></i>
             </button>
           )}
         </div>

@@ -1,28 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
-const drawerWidth = 300;
+const drawerWidth = 350;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-  },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: "none",
   },
   drawer: {
     width: drawerWidth,
@@ -30,14 +10,22 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-  },
-  drawerHeader: {
     display: "flex",
     alignItems: "center",
-    padding: theme.spacing(0, 1),
+  },
+  drawerHeader: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    // justifyContent: "center",
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+  },
+  close: {
+    justifySelf: "flex-start",
+    "& svg": {
+      fontSize: "2.5rem",
+    },
   },
   content: {
     height: "calc(100vh - 64px)",
@@ -55,6 +43,22 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+  },
+  container: {
+    width: "90%",
+    display: "Flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+  },
+  buttons: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  button: {
+    width: "47%",
   },
 }));
 

@@ -16,7 +16,6 @@ const styles = {
       "& .some": {
         width: "100%",
         visibility: "visible",
-        transform: "scaleX(1)",
         zIndex: "2",
         opacity: (props) => (props.showFullPalette ? "1" : "0.6"),
       },
@@ -31,7 +30,7 @@ const styles = {
       chroma(props.background).luminance() <= 0.35 ? "white" : "black",
   },
   seeMore: {
-    width: "100%",
+    width: "0%",
     height: "100%",
     position: "absolute",
     display: "inline-block",
@@ -49,7 +48,6 @@ const styles = {
     color: (props) =>
       chroma(props.background).luminance() <= 0.35 ? "white" : "black",
     textTransform: "uppercase",
-    transform: "scaleX(0)",
     opacity: (props) => (props.showFullPalette ? "0" : "1"),
     transition: "0.2s all ease-in-out",
   },
