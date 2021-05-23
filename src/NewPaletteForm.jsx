@@ -31,9 +31,10 @@ export default function NewPaletteForm(props) {
     setColors(newColors);
   };
 
-  const handleSubmit = (name) => {
+  const handleSubmit = (name, emoji) => {
     const newPalette = {
       paletteName: name,
+      emoji: emoji,
       id: name.toLowerCase().replace(/ /g, "-"),
       colors: colors,
     };

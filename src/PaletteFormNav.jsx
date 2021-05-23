@@ -22,7 +22,8 @@ const styles = (theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     flexDirection: "row",
-    // justifyContent: "space-between",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -39,15 +40,36 @@ const styles = (theme) => ({
     display: "none",
   },
   navBtns: {
-    display: "flex",
-    alignItems: "center",
+    marginRight: "1rem",
+  },
+  button: {
+    margin: "0 0.55rem",
+  },
+  link: {
+    textDecoration: "none",
   },
 });
 
 class PaletteFormNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formOpen: false,
+    };
+    this.handleFormOpen = this.handleFormOpen.bind(this);
+    this.handleFormClose = this.handleFormClose.bind(this);
+  }
+  handleFormOpen() {
+    this.setState({ formOpen: true });
+  }
+  handleFormClose() {
+    this.setState({ formOpen: false });
+  }
+
   render() {
     const { classes, open, handleDrawerOpen, palettes, handleSubmit } =
       this.props;
+    const { formOpen } = this.state;
     return (
       <div>
         <CssBaseline />
@@ -73,14 +95,32 @@ class PaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-            <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
-            <Link to="/">
-              <Button variant="contained" color="primary">
+            <Button
+              className={classes.button}
+              variant="outlined"
+              color="primary"
+              onClick={this.handleFormOpen}
+            >
+              Create Palette
+            </Button>
+            <Link to="/" className={classes.link}>
+              <Button
+                variant="contained"
+                className={classes.button}
+                color="primary"
+              >
                 Go Back
               </Button>
             </Link>
           </div>
         </AppBar>
+        {formOpen && (
+          <PaletteMetaForm
+            palettes={palettes}
+            handleSubmit={handleSubmit}
+            handleFormClose={this.handleFormClose}
+          />
+        )}
       </div>
     );
   }

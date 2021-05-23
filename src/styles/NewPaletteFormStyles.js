@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     alignItems: "center",
-    // justifyContent: "center",
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
