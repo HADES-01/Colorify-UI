@@ -39,7 +39,7 @@ class ColorPickerForm extends Component {
       color: this.state.currentColor,
       name: this.state.colorName,
     });
-    this.setState({ colorName: "", currentColor: "#5f5f5f" });
+    this.setState({ colorName: "" });
   }
 
   render() {
@@ -52,7 +52,7 @@ class ColorPickerForm extends Component {
           color={currentColor}
           onChange={this.handleColorChange}
         />
-        <ValidatorForm onSubmit={this.handleSubmit}>
+        <ValidatorForm onSubmit={this.handleSubmit} instantValidate={false}>
           <TextValidator
             className={classes.colorNameInput}
             value={colorName}
