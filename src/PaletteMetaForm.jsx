@@ -25,6 +25,7 @@ class PaletteMetaForm extends Component {
   }
   handleSubmit(emoji) {
     this.props.handleSubmit(this.state.newPaletteName, emoji.native);
+    this.setState({ stage: "" });
   }
   componentDidMount() {
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>

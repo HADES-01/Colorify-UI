@@ -121,6 +121,7 @@ export default function NewPaletteForm(props) {
       >
         <div className={classes.drawerHeader} />
         <DraggableColorBoxList
+          distance={20}
           colors={colors}
           removeColor={removeColor}
           axis="xy"

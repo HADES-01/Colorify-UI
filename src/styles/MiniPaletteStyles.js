@@ -1,15 +1,11 @@
 const styles = {
   "@global": {
+    ".fade-exit": {
+      opacity: 1,
+    },
     ".fade-exit-active": {
       opacity: 0,
       transition: "opacity 500ms ease-out",
-    },
-    ".fade-enter": {
-      opacity: 0,
-      transition: "opacity 0.3s ease-in",
-    },
-    "fade-enter-active": {
-      opacity: 1,
     },
   },
   main: {
